@@ -40,6 +40,9 @@ div.card.dashboard {
   max-width: 70px;
   background-color: transparent;
 }
+p.footer {
+  text-align: center;
+}
 
 .serch {
   display: inline-block;
