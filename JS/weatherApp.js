@@ -84,6 +84,8 @@ function weatherForecast(response) {
     Rain: `<i class="fa-solid fa-cloud-rain"></i>`,
     Clear: `<i class="fa-solid fa-sun"></i>`,
   };
+  let SnowCity = document.querySelector("#city");
+  SnowCity.innerHTML = response.data.name;
   let snowWeatherIcon = document.querySelector("#weather-icon");
   let weatherDescription = response.data.weather[0].main;
   snowWeatherIcon.innerHTML = weatherIcon[weatherDescription];
@@ -125,8 +127,6 @@ function weatherForecast(response) {
 function city(event) {
   event.preventDefault();
   let input = document.querySelector("#exampleInputEmail1");
-  let city = document.querySelector("#city");
-  city.innerHTML = input["value"];
   let unit = "metric";
   let apiKey = "21cf52b64168334a0b71f4d075758440";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${input["value"]}&appid=${apiKey}&units=${unit}`;
