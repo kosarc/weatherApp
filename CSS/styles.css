@@ -1,0 +1,79 @@
+div.card.main {
+  margin: 150px auto;
+  border: 0;
+  box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%);
+  background-image: linear-gradient(to top, #f5f2fe 0%, #fff 100%);
+}
+.form-label {
+  margin: 10px 0 0;
+}
+div.card.left {
+  padding: 10px 15px;
+  font-family: "Kanit", sans-serif;
+  color: #272044;
+  border: 0;
+  background-color: transparent;
+}
+div.card.right {
+  padding: 10px 15px;
+  font-family: "Kanit", sans-serif;
+  color: #272044;
+
+  border: 0;
+  border-left: 0 0.5rem 1rem rgb(0 0 0 / 15%);
+  box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%);
+  background-color: transparent;
+}
+li {
+  list-style: none;
+  font-size: 20px;
+}
+i.icon {
+  text-align: center;
+  display: inline-block;
+  padding: 10px 0;
+  font-size: 22px;
+}
+div.card.dashboard {
+  border: 1px solid #895ef1;
+  text-align: center;
+  max-width: 70px;
+  background-color: transparent;
+}
+
+.serch {
+  display: inline-block;
+  padding: 1px 0 10px;
+}
+.btn-primary {
+  background-color: transparent;
+  border: 1px solid #895ef1;
+  color: #895ef1;
+
+  --bs-btn-hover-bg: transparent;
+  --bs-btn-hover-color: #895ef1;
+}
+
+.btn-primary:hover {
+  background-color: #895ef1;
+  color: #f5f3fe;
+}
+.celsius {
+  color: #2c3639;
+  font-weight: 900;
+}
+.fahrenheit {
+  color: #2c3639;
+  font-weight: 900;
+}
+
+.celsius:hover {
+  cursor: pointer;
+  text-decoration: underline;
+  color: #73777b;
+}
+.fahrenheit:hover {
+  cursor: pointer;
+  text-decoration: underline;
+  color: #73777b;
+}
