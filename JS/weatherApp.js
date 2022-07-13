@@ -192,7 +192,7 @@ function currentLocation() {
     let lat = posission.coords.latitude;
     let lon = posission.coords.longitude;
     let apiKey = "21cf52b64168334a0b71f4d075758440";
-    let apiUrlReverse = `http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=1&appid=${apiKey}`;
+    let apiUrlReverse = `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=1&appid=${apiKey}`;
     axios.get(apiUrlReverse).then(snowLocationName);
   }
 
