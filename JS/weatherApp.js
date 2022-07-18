@@ -171,6 +171,23 @@ function currentLocation() {
     let tempRound = Math.round(tempCurrent);
     let snowTemp = document.querySelector("#temperature");
     snowTemp.innerHTML = `${tempRound}º`;
+
+    function convertToCelsius() {
+      let temp = document.querySelector("#temperature");
+
+      temp.innerHTML = `${Math.round(tempCurrent)}º`;
+    }
+
+    function convertToFahrenheit() {
+      let temp = document.querySelector("#temperature");
+
+      temp.innerHTML = `${Math.round(tempCurrent * 1.8 + 32)}º`;
+    }
+
+    let tempCelsius = document.querySelector("#celsius");
+    let tempFahrinheit = document.querySelector("#fahrenheit");
+    tempCelsius.addEventListener("click", convertToCelsius);
+    tempFahrinheit.addEventListener("click", convertToFahrenheit);
   }
 
   function currentLocationWeather(posission) {
