@@ -44,6 +44,9 @@ p.footer {
   text-align: center;
 }
 
+.weather-icon {
+  font-size: 55px;
+}
 .serch {
   display: inline-block;
   padding: 1px 0 10px;
