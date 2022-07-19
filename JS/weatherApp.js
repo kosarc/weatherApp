@@ -32,14 +32,16 @@ function initialData(cityInfo) {
 
     function convertToCelsius() {
       let temp = document.querySelector("#temperature");
-
       temp.innerHTML = `${Math.round(tempCurrent)}º`;
+      document.querySelector("#celsius").classList.remove("change");
+      document.querySelector("#fahrenheit").classList.add("change");
     }
 
     function convertToFahrenheit() {
       let temp = document.querySelector("#temperature");
-
       temp.innerHTML = `${Math.round(tempCurrent * 1.8 + 32)}º`;
+      document.querySelector("#celsius").classList.add("change");
+      document.querySelector("#fahrenheit").classList.remove("change");
     }
 
     let tempCelsius = document.querySelector("#celsius");
@@ -47,22 +49,16 @@ function initialData(cityInfo) {
     tempCelsius.addEventListener("click", convertToCelsius);
     tempFahrinheit.addEventListener("click", convertToFahrenheit);
   }
-
+  function city(event) {
+    event.preventDefault();
+    let input = document.querySelector("#exampleInputEmail1").value;
+    initialData(input);
+  }
   let cityName = cityInfo;
   let apiKey = "21cf52b64168334a0b71f4d075758440";
   let unit = "metric";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=${unit}`;
   axios.get(apiUrl).then(initialPosition);
-
-  function city(event) {
-    event.preventDefault();
-    let input = document.querySelector("#exampleInputEmail1");
-    let unit = "metric";
-    let apiKey = "21cf52b64168334a0b71f4d075758440";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${input["value"]}&appid=${apiKey}&units=${unit}`;
-
-    axios.get(apiUrl).then(initialPosition);
-  }
 
   let searchForm = document.querySelector("#search-line");
   searchForm.addEventListener("submit", city);
@@ -71,7 +67,18 @@ function initialData(cityInfo) {
 //The current Button
 
 function currentLocation() {
-  function weatherForecast(response) {
+  function snowLocationName(response) {
+    let city = response.data[0].name;
+    let snowCity = document.querySelector("#city");
+    snowCity.innerHTML = city;
+  }
+  function snowLocation(posission) {
+    let lat = posission.coords.latitude;
+    let lon = posission.coords.longitude;
+    let apiUrlReverse = `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=1&appid=${apiKey}`;
+    axios.get(apiUrlReverse).then(snowLocationName);
+  }
+  function currentPositionWeather(response) {
     let weatherIcon = {
       Clouds: `<i class="fa-solid fa-cloud"></i>`,
       Rain: `<i class="fa-solid fa-cloud-rain"></i>`,
@@ -118,27 +125,14 @@ function currentLocation() {
   function currentLocationWeather(posission) {
     let lat = posission.coords.latitude;
     let lon = posission.coords.longitude;
-    let apiKey = "21cf52b64168334a0b71f4d075758440";
     let unit = "metric";
     let endpoint = "https://api.openweathermap.org/data/2.5/weather?";
     let apiUrl = `${endpoint}lat=${lat}&lon=${lon}&appid=${apiKey}&units=${unit}`;
-    axios.get(apiUrl).then(weatherForecast);
-  }
-
-  function snowLocationName(response) {
-    let city = response.data[0].name;
-    let snowCity = document.querySelector("#city");
-    snowCity.innerHTML = city;
-  }
-  function snowLocation(posission) {
-    let lat = posission.coords.latitude;
-    let lon = posission.coords.longitude;
-    let apiKey = "21cf52b64168334a0b71f4d075758440";
-    let apiUrlReverse = `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=1&appid=${apiKey}`;
-    axios.get(apiUrlReverse).then(snowLocationName);
+    axios.get(apiUrl).then(currentPositionWeather);
   }
   navigator.geolocation.getCurrentPosition(snowLocation);
   navigator.geolocation.getCurrentPosition(currentLocationWeather);
+  let apiKey = "21cf52b64168334a0b71f4d075758440";
 }
 
 function properMinutes() {
@@ -196,5 +190,4 @@ weatherDate.innerHTML = currentDate;
 
 let currentButton = document.querySelector("#current-button");
 currentButton.addEventListener("click", currentLocation);
-
 initialData("Kyiv");

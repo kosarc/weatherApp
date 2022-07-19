@@ -65,21 +65,15 @@ p.footer {
   color: #f5f3fe;
 }
 .celsius {
-  color: #2c3639;
   font-weight: 900;
 }
 .fahrenheit {
-  color: #2c3639;
   font-weight: 900;
 }
-
-.celsius:hover {
-  cursor: pointer;
-  text-decoration: underline;
-  color: #73777b;
+.change {
+  color: #895ef1;
 }
-.fahrenheit:hover {
+.change:hover {
   cursor: pointer;
   text-decoration: underline;
-  color: #73777b;
 }
