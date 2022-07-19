@@ -43,6 +43,7 @@ div.card.dashboard {
 }
 p.footer {
   text-align: center;
+  font-size: small;
 }
 
 .weather-icon {
