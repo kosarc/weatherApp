@@ -1,7 +1,62 @@
 //The main function
 
+function nextDaysForecats(response) {
+  console.log(response);
+  let forecastDayNames = response.data.daily;
+  let dailyForecastSelector = document.querySelector("#daily-forecast");
+  let snowDailyForecast = `<div class="row">`;
+  let weatherIconForecast = {
+    Clouds: `<i class="fa-solid fa-cloud"></i>`,
+    Rain: `<i class="fa-solid fa-cloud-rain"></i>`,
+    Clear: `<i class="fa-solid fa-sun"></i>`,
+  };
+
+  forecastDayNames.forEach(function (forecastDays, index) {
+    let weatherDescriptionForecast = forecastDays.weather[0].main;
+
+    let data = new Date(forecastDays.dt * 1000);
+    let day = data.getDay();
+    let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+    if (index < 4) {
+      snowDailyForecast += `<div class="col">
+                  <div class="card dashboard" style="width: 8rem">
+                    <div class="card-body">
+                      <p class="card-text">${days[day]} <br /> ${
+        weatherIconForecast[weatherDescriptionForecast]
+      }
+                      <br /> <span class="temp-max"> ${Math.round(
+                        forecastDays.temp.max
+                      )}</span>°<span class="temp-min"> ${Math.round(
+        forecastDays.temp.min
+      )}°</span> 
+                    </div>
+                  </div>
+                </div> `;
+
+      dailyForecastSelector.innerHTML = snowDailyForecast;
+    }
+  });
+  snowDailyForecast += `</div>`;
+}
+let example = new Date(1659002400 * 1000);
+console.log(example);
+
+function getLocationCoords(response) {
+  let apiKey = "21cf52b64168334a0b71f4d075758440";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${response.data.coord.lat}&lon=${response.data.coord.lon}&appid=${apiKey}&units=metric`;
+  axios(apiUrl).then(nextDaysForecats);
+}
+
+function getLocationCoordsCurrent(posission) {
+  let apiKey = "21cf52b64168334a0b71f4d075758440";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${posission.coords.latitude}&lon=${posission.coords.longitude}&appid=${apiKey}&units=metric`;
+  axios(apiUrl).then(nextDaysForecats);
+}
+
 function initialData(cityInfo) {
   function initialPosition(response) {
+    getLocationCoords(response);
     let weatherIcon = {
       Clouds: `<i class="fa-solid fa-cloud"></i>`,
       Rain: `<i class="fa-solid fa-cloud-rain"></i>`,
@@ -132,6 +187,8 @@ function currentLocation() {
   }
   navigator.geolocation.getCurrentPosition(snowLocation);
   navigator.geolocation.getCurrentPosition(currentLocationWeather);
+  navigator.geolocation.getCurrentPosition(getLocationCoordsCurrent);
+
   let apiKey = "21cf52b64168334a0b71f4d075758440";
 }
 
@@ -191,3 +248,21 @@ weatherDate.innerHTML = currentDate;
 let currentButton = document.querySelector("#current-button");
 currentButton.addEventListener("click", currentLocation);
 initialData("Kyiv");
+
+let forecastDayNames = ["Sun", "Mon", "Tue", "Wed"];
+let dailyForecastSelector = document.querySelector("#daily-forecast");
+let snowDailyForecast = `<div class="row">`;
+
+forecastDayNames.forEach(function (forecastDays) {
+  snowDailyForecast += `<div class="col">
+                  <div class="card dashboard" style="width: 8rem">
+                    <i class="fa-solid fa-sun icon"></i>
+                    <div class="card-body">
+                      <p class="card-text">${forecastDays} <br />29°C</p>
+                    </div>
+                  </div>
+                </div>`;
+
+  dailyForecastSelector.innerHTML = snowDailyForecast;
+});
+snowDailyForecast += `</div>`;

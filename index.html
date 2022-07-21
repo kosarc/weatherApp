@@ -40,9 +40,11 @@
               </p>
               <br /><br /><br /><br />
               <h2>
-                <span id="weather-icon" class="weather-icon"></span
-                ><br /><span id="temperature">°</span
-                > <span class="celsius" id="celsius">C</span> |
+                <span id="weather-icon" class="weather-icon"></span><br /><span
+                  id="temperature"
+                  >°</span
+                >
+                <span class="celsius" id="celsius">C</span> |
                 <span class="fahrenheit change" id="fahrenheit">F</span> <br />
                 <span id="weather-description"></span>
               </h2>
@@ -59,75 +61,47 @@
 
               <br /><br /><br />
 
-              <div class="row">
-                <div class="col">
-                  <div class="card dashboard" style="width: 8rem">
-                    <i class="fa-solid fa-sun icon"></i>
-                    <div class="card-body">
-                      <p class="card-text">Tue <br />29°C</p>
+              <div id="daily-forecast"></div>
+                <form id="search-line">
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label"
+                      ><i class="fa-solid fa-location-dot"></i> Location:
+                    </label>
+                    <br />
+                    <div class="serch">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="exampleInputEmail1"
+                        placeholder="Enter your city"
+                      />
                     </div>
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="card dashboard" style="width: 8rem">
-                    <i class="fa-solid fa-cloud-sun icon"></i>
-                    <div class="card-body">
-                      <p class="card-text">Wed <br />25°C</p>
-                    </div>
-                  </div>
-                </div>
+                    <br />
 
-                <div class="col">
-                  <div class="card dashboard" style="width: 8rem">
-                    <i class="fa-solid fa-sun icon"></i>
-                    <div class="card-body">
-                      <p class="card-text">Thu <br />28°C</p>
-                    </div>
+                    <button type="submit" class="btn btn-primary">
+                      Search
+                    </button>
+                    <button
+                      id="current-button"
+                      type="submit"
+                      class="btn btn-primary"
+                    >
+                      Current
+                    </button>
                   </div>
-                </div>
-
-                <div class="col">
-                  <div class="card dashboard" style="width: 8rem">
-                    <i class="fa-solid fa-cloud-rain icon"></i>
-                    <div class="card-body">
-                      <p class="card-text">Fry <br />22°C</p>
-                    </div>
-                  </div>
-                </div>
+                </form>
               </div>
-              <form id="search-line">
-                <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label"
-                    ><i class="fa-solid fa-location-dot"></i> Location:
-                  </label>
-                  <br />
-                  <div class="serch">
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="exampleInputEmail1"
-                      placeholder="Enter your city"
-                    />
-                  </div>
-                  <br />
-
-                  <button type="submit" class="btn btn-primary">Search</button>
-                  <button
-                    id="current-button"
-                    type="submit"
-                    class="btn btn-primary"
-                  >
-                    Current
-                  </button>
-                </div>
-              </form>
             </div>
           </div>
         </div>
-        </div>
       </div>
     </div>
-    <p class="footer"> <a href="https://github.com/kosarc/weatherApp" target="_blank">Open-source code</a> , by sKosarenko</p>
+    <p class="footer">
+      <a href="https://github.com/kosarc/weatherApp" target="_blank"
+        >Open-source code</a
+      >
+      , by sKosarenko
+    </p>
     <script src="JS/weatherApp.js"></script>
   </body>
 </html>

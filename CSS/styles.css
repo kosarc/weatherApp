@@ -38,7 +38,7 @@ i.icon {
 div.card.dashboard {
   border: 1px solid #895ef1;
   text-align: center;
-  max-width: 70px;
+  max-width: 90px;
   background-color: transparent;
 }
 p.footer {
@@ -78,4 +78,11 @@ p.footer {
 .change:hover {
   cursor: pointer;
   text-decoration: underline;
+}
+.temp-max {
+  font-weight: bolder;
+}
+.temp-min {
+  font-weight: bolder;
+  opacity: 0.7;
 }
