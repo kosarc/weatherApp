@@ -36,7 +36,7 @@ i.icon {
   font-size: 22px;
 }
 div.card.dashboard {
-  border: 1px solid #895ef1;
+  border: 0;
   text-align: center;
   max-width: 90px;
   background-color: transparent;
@@ -79,10 +79,24 @@ p.footer {
   cursor: pointer;
   text-decoration: underline;
 }
-.temp-max {
+.max-temp {
   font-weight: bolder;
 }
-.temp-min {
+.min-temp {
   font-weight: bolder;
   opacity: 0.7;
+}
+.card-body:hover {
+  cursor: pointer;
+}
+.bg {
+  background-color: rgb(138 94 241 / 20%);
+  border-radius: 4px;
+  transition: all 200ms ease-in-out;
+}
+
+[class*="2"] {
+  background-color: rgb(138 94 241 / 20%);
+  border-radius: 4px;
+  transition: all 200ms ease-in-out;
 }
