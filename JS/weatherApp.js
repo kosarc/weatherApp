@@ -31,6 +31,14 @@ function nextDaysForecats(response) {
     }
   });
   tempInfo = forecastDayNames;
+  windOne = tempInfo[0].wind_speed;
+  windOneF = tempInfo[0].wind_speed;
+  windTwo = tempInfo[1].wind_speed;
+  windTwoF = tempInfo[1].wind_speed;
+  windThree = tempInfo[2].wind_speed;
+  windThreeF = tempInfo[2].wind_speed;
+  windFour = tempInfo[3].wind_speed;
+  windFourF = tempInfo[3].wind_speed;
   snowDailyForecast += `</div>`;
   console.log(tempInfo);
 }
@@ -54,11 +62,12 @@ function initialData(cityInfo) {
     let humidity = response.data.main.humidity;
     let tempRound = Math.round(tempCurrent);
     let city = response.data.name;
+    weatherUnit = "km/h";
 
     snowWeatherIcon.innerHTML = weatherIconForecast[weatherDescription];
     snowWeather.innerHTML = weatherDescription;
     snowPessure.innerHTML = pressure;
-    snowWind.innerHTML = `${windRound} km/h`;
+    snowWind.innerHTML = `${windRound} ${weatherUnit}`;
     snowHumidity.innerHTML = humidity;
     snowTemp.innerHTML = `${tempRound}º`;
     snowCity.innerHTML = city;
@@ -105,10 +114,15 @@ function convertToCelsius() {
     maxTemp[i].innerHTML = `${Math.round(tempInfo[i].temp.max)}º`;
     minTemp[i].innerHTML = ` ${Math.round(tempInfo[i].temp.min)}º`;
   }
-  tempSign.innerHTML = `${Math.round(tempCurrent)}º`;
+  weatherUnit = "km/h";
+  windOneF = windOne;
+  windTwoF = windTwo;
+  windThreeF = windThree;
+  windFourF = windFour;
+  snowTemp.innerHTML = `${Math.round(tempCurrent)}º`;
   tempCelsius.classList.remove("change");
   tempFahrinheit.classList.add("change");
-  snowWind.innerHTML = `${Math.round(windSpeedUnit)} km/h`;
+  snowWind.innerHTML = `${Math.round(windSpeedUnit)} ${weatherUnit}`;
 }
 
 function convertToFahrenheit() {
@@ -116,10 +130,15 @@ function convertToFahrenheit() {
     maxTemp[i].innerHTML = `${Math.round(tempInfo[i].temp.max * 1.8 + 32)}º`;
     minTemp[i].innerHTML = ` ${Math.round(tempInfo[i].temp.min * 1.8 + 32)}º`;
   }
-  tempSign.innerHTML = `${Math.round(tempCurrent * 1.8 + 32)}º`;
+  weatherUnit = "mi/h";
+  windOneF = windOne * 0.62137;
+  windTwoF = windTwo * 0.62137;
+  windThreeF = windThree * 0.62137;
+  windFourF = windFour * 0.62137;
+  snowTemp.innerHTML = `${Math.round(tempCurrent * 1.8 + 32)}º`;
   tempCelsius.classList.add("change");
   tempFahrinheit.classList.remove("change");
-  snowWind.innerHTML = `${Math.round(windSpeedUnit * 0.62137)} mi/h`;
+  snowWind.innerHTML = `${Math.round(windSpeedUnit * 0.62137)} ${weatherUnit}`;
 }
 
 //Current date
@@ -176,6 +195,15 @@ let apiKey = "21cf52b64168334a0b71f4d075758440";
 let tempInfo = [];
 let tempCurrent = null;
 let windSpeedUnit = null;
+let windOne = null;
+let windOneF = null;
+let windTwo = null;
+let windTwoF = null;
+let windThree = null;
+let windThreeF = null;
+let windFour = null;
+let windFourF = null;
+let weatherUnit = null;
 
 let weatherDay = document.querySelector("#current-day");
 let tempSign = document.querySelector("#temperature");
@@ -197,11 +225,13 @@ let dailyForecastSelector = document.querySelector("#daily-forecast");
 let searchForm = document.querySelector("#search-line");
 let forecastButton = document.getElementsByClassName("col");
 
+//Weather forecast buttons
+
 document.addEventListener("click", function (e) {
   if (e.target && e.target.id == "2") {
     snowHumidity.innerHTML = tempInfo[0].humidity;
     snowPessure.innerHTML = tempInfo[0].pressure;
-    snowWind.innerHTML = Math.round(tempInfo[0].wind_speed);
+    snowWind.innerHTML = `${Math.round(windOneF)} ${weatherUnit}`;
 
     console.log(tempInfo);
     snowTemp.innerHTML = maxTemp[0].innerHTML;
@@ -216,7 +246,7 @@ document.addEventListener("click", function (e) {
   if (e.target && e.target.id == "3") {
     snowHumidity.innerHTML = tempInfo[1].humidity;
     snowPessure.innerHTML = tempInfo[1].pressure;
-    snowWind.innerHTML = Math.round(tempInfo[1].wind_speed);
+    snowWind.innerHTML = `${Math.round(windTwoF)} ${weatherUnit}`;
     snowTemp.innerHTML = maxTemp[1].innerHTML;
     document.getElementById("2").classList.remove("2");
     document.getElementById("3").classList.add("bg");
@@ -230,7 +260,7 @@ document.addEventListener("click", function (e) {
   if (e.target && e.target.id == "4") {
     snowHumidity.innerHTML = tempInfo[2].humidity;
     snowPessure.innerHTML = tempInfo[2].pressure;
-    snowWind.innerHTML = Math.round(tempInfo[2].wind_speed);
+    snowWind.innerHTML = `${Math.round(windThreeF)} ${weatherUnit}`;
     snowTemp.innerHTML = maxTemp[2].innerHTML;
     document.getElementById("2").classList.remove("2");
     document.getElementById("4").classList.add("bg");
@@ -244,7 +274,7 @@ document.addEventListener("click", function (e) {
   if (e.target && e.target.id == "5") {
     snowHumidity.innerHTML = tempInfo[3].humidity;
     snowPessure.innerHTML = tempInfo[3].pressure;
-    snowWind.innerHTML = Math.round(tempInfo[3].wind_speed);
+    snowWind.innerHTML = `${Math.round(windFourF)} ${weatherUnit}`;
     snowTemp.innerHTML = maxTemp[3].innerHTML;
 
     document.getElementById("2").classList.remove("2");
@@ -254,6 +284,8 @@ document.addEventListener("click", function (e) {
     document.getElementById("4").classList.remove("bg");
   }
 });
+
+//Current date
 
 weatherDay.innerHTML = currentDay;
 weatherTime.innerHTML = currentTime;

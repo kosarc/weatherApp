@@ -92,11 +92,11 @@ p.footer {
 .bg {
   background-color: rgb(138 94 241 / 20%);
   border-radius: 4px;
-  transition: all 200ms ease-in-out;
+  transition: all 300ms ease-in-out;
 }
 
 [class*="2"] {
   background-color: rgb(138 94 241 / 20%);
   border-radius: 4px;
-  transition: all 200ms ease-in-out;
+  transition: all 300ms ease-in-out;
 }
