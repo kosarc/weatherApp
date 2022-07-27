@@ -234,6 +234,8 @@ document.addEventListener("click", function (e) {
     snowTemp.innerHTML = maxTemp[0].innerHTML;
     snowWeatherIcon.innerHTML =
       weatherIconForecast[tempInfo[0].weather[0].main];
+    snowWeather.innerHTML = tempInfo[0].weather[0].main;
+
     document.getElementById("2").classList.add("bg");
     document.getElementById("3").classList.remove("bg");
     document.getElementById("4").classList.remove("bg");
@@ -249,6 +251,7 @@ document.addEventListener("click", function (e) {
     snowTemp.innerHTML = maxTemp[1].innerHTML;
     snowWeatherIcon.innerHTML =
       weatherIconForecast[tempInfo[1].weather[0].main];
+    snowWeather.innerHTML = tempInfo[1].weather[0].main;
     document.getElementById("2").classList.remove("2");
     document.getElementById("3").classList.add("bg");
     document.getElementById("2").classList.remove("bg");
@@ -265,6 +268,8 @@ document.addEventListener("click", function (e) {
     snowTemp.innerHTML = maxTemp[2].innerHTML;
     snowWeatherIcon.innerHTML =
       weatherIconForecast[tempInfo[2].weather[0].main];
+    snowWeather.innerHTML = tempInfo[2].weather[0].main;
+
     document.getElementById("2").classList.remove("2");
     document.getElementById("4").classList.add("bg");
     document.getElementById("3").classList.remove("bg");
@@ -281,6 +286,7 @@ document.addEventListener("click", function (e) {
     snowTemp.innerHTML = maxTemp[3].innerHTML;
     snowWeatherIcon.innerHTML =
       weatherIconForecast[tempInfo[3].weather[0].main];
+    snowWeather.innerHTML = tempInfo[3].weather[0].main;
 
     document.getElementById("2").classList.remove("2");
     document.getElementById("5").classList.add("bg");
