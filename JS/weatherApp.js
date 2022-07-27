@@ -231,8 +231,9 @@ document.addEventListener("click", function (e) {
     snowHumidity.innerHTML = tempInfo[0].humidity;
     snowPessure.innerHTML = tempInfo[0].pressure;
     snowWind.innerHTML = `${Math.round(windOneF)} ${weatherUnit}`;
-
     snowTemp.innerHTML = maxTemp[0].innerHTML;
+    snowWeatherIcon.innerHTML =
+      weatherIconForecast[tempInfo[0].weather[0].main];
     document.getElementById("2").classList.add("bg");
     document.getElementById("3").classList.remove("bg");
     document.getElementById("4").classList.remove("bg");
@@ -246,6 +247,8 @@ document.addEventListener("click", function (e) {
     snowPessure.innerHTML = tempInfo[1].pressure;
     snowWind.innerHTML = `${Math.round(windTwoF)} ${weatherUnit}`;
     snowTemp.innerHTML = maxTemp[1].innerHTML;
+    snowWeatherIcon.innerHTML =
+      weatherIconForecast[tempInfo[1].weather[0].main];
     document.getElementById("2").classList.remove("2");
     document.getElementById("3").classList.add("bg");
     document.getElementById("2").classList.remove("bg");
@@ -260,6 +263,8 @@ document.addEventListener("click", function (e) {
     snowPessure.innerHTML = tempInfo[2].pressure;
     snowWind.innerHTML = `${Math.round(windThreeF)} ${weatherUnit}`;
     snowTemp.innerHTML = maxTemp[2].innerHTML;
+    snowWeatherIcon.innerHTML =
+      weatherIconForecast[tempInfo[2].weather[0].main];
     document.getElementById("2").classList.remove("2");
     document.getElementById("4").classList.add("bg");
     document.getElementById("3").classList.remove("bg");
@@ -274,6 +279,8 @@ document.addEventListener("click", function (e) {
     snowPessure.innerHTML = tempInfo[3].pressure;
     snowWind.innerHTML = `${Math.round(windFourF)} ${weatherUnit}`;
     snowTemp.innerHTML = maxTemp[3].innerHTML;
+    snowWeatherIcon.innerHTML =
+      weatherIconForecast[tempInfo[3].weather[0].main];
 
     document.getElementById("2").classList.remove("2");
     document.getElementById("5").classList.add("bg");
