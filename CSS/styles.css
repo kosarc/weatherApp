@@ -58,7 +58,6 @@ p.footer {
   background-color: transparent;
   border: 1px solid #895ef1;
   color: #895ef1;
-
   --bs-btn-hover-bg: transparent;
   --bs-btn-hover-color: #895ef1;
 }
@@ -66,6 +65,7 @@ p.footer {
 .btn-primary:hover {
   background-color: #895ef1;
   color: #f5f3fe;
+  transition: all 300ms ease-in-out;
 }
 .celsius {
   font-weight: 900;
