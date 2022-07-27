@@ -14,13 +14,13 @@ function nextDaysForecats(response) {
     if (index < 4) {
       snowDailyForecast += ` <div  class="col">
                   <div class="card dashboard" style="width: 8rem">
-                    <div id="${++idToForecast}" class="card-body ${++classToForecst}">
-                      <class="card-text">${days[day]} <br /> ${
+                    <div id="${++idToForecast}" class="card-body ${++classToForecst} card-text"
+                      >${days[day]} <br /> ${
         weatherIconForecast[weatherDescriptionForecast]
       }
                       <br /> <span class="max-temp"> ${Math.round(
                         forecastDays.temp.max
-                      )}º</span> <span class="min-temp"> ${Math.round(
+                      )}º</span> <span class="min-temp">${Math.round(
         forecastDays.temp.min
       )}º</span>
                     </div>
@@ -40,7 +40,6 @@ function nextDaysForecats(response) {
   windFour = tempInfo[3].wind_speed;
   windFourF = tempInfo[3].wind_speed;
   snowDailyForecast += `</div>`;
-  console.log(tempInfo);
 }
 function getLocationCoords(response) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${response.data.coord.lat}&lon=${response.data.coord.lon}&appid=${apiKey}&units=metric`;
@@ -233,7 +232,6 @@ document.addEventListener("click", function (e) {
     snowPessure.innerHTML = tempInfo[0].pressure;
     snowWind.innerHTML = `${Math.round(windOneF)} ${weatherUnit}`;
 
-    console.log(tempInfo);
     snowTemp.innerHTML = maxTemp[0].innerHTML;
     document.getElementById("2").classList.add("bg");
     document.getElementById("3").classList.remove("bg");

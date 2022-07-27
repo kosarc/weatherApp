@@ -35,6 +35,7 @@ i.icon {
   padding: 10px 0;
   font-size: 22px;
 }
+
 div.card.dashboard {
   border: 0;
   text-align: center;
@@ -99,4 +100,12 @@ p.footer {
   background-color: rgb(138 94 241 / 20%);
   border-radius: 4px;
   transition: all 300ms ease-in-out;
+}
+[id*="2"] > i,
+span.max-temp,
+span.min-temp,
+[id*="3"] > i,
+[id*="4"] > i,
+[id*="5"] > i {
+  pointer-events: none;
 }
