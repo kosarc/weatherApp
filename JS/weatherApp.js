@@ -228,6 +228,8 @@ let forecastButton = document.getElementsByClassName("col");
 
 document.addEventListener("click", function (e) {
   if (e.target && e.target.id == "2") {
+    tempCurrent = tempInfo[0].temp.max;
+    console.log(maxTemp[0].innerHTML);
     snowHumidity.innerHTML = tempInfo[0].humidity;
     snowPessure.innerHTML = tempInfo[0].pressure;
     snowWind.innerHTML = `${Math.round(windOneF)} ${weatherUnit}`;
@@ -245,6 +247,7 @@ document.addEventListener("click", function (e) {
 
 document.addEventListener("click", function (e) {
   if (e.target && e.target.id == "3") {
+    tempCurrent = tempInfo[1].temp.max;
     snowHumidity.innerHTML = tempInfo[1].humidity;
     snowPessure.innerHTML = tempInfo[1].pressure;
     snowWind.innerHTML = `${Math.round(windTwoF)} ${weatherUnit}`;
@@ -262,6 +265,7 @@ document.addEventListener("click", function (e) {
 
 document.addEventListener("click", function (e) {
   if (e.target && e.target.id == "4") {
+    tempCurrent = tempInfo[2].temp.max;
     snowHumidity.innerHTML = tempInfo[2].humidity;
     snowPessure.innerHTML = tempInfo[2].pressure;
     snowWind.innerHTML = `${Math.round(windThreeF)} ${weatherUnit}`;
@@ -280,6 +284,7 @@ document.addEventListener("click", function (e) {
 
 document.addEventListener("click", function (e) {
   if (e.target && e.target.id == "5") {
+    tempCurrent = tempInfo[3].temp.max;
     snowHumidity.innerHTML = tempInfo[3].humidity;
     snowPessure.innerHTML = tempInfo[3].pressure;
     snowWind.innerHTML = `${Math.round(windFourF)} ${weatherUnit}`;
