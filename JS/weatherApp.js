@@ -291,6 +291,8 @@ document.addEventListener("click", function (e) {
     document.getElementById("3").classList.remove("bg");
     document.getElementById("2").classList.remove("bg");
     document.getElementById("5").classList.remove("bg");
+    varTwo = 15;
+    varOne = 20;
   }
 });
 
