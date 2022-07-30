@@ -1,7 +1,8 @@
 body.secret {
   background-image: url(https://s3.amazonaws.com/shecodesio-production/uploads/files/000/042/138/original/IMG_5704.jpg?1659171876);
   background-color: transparent;
-  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 div.card.main {
