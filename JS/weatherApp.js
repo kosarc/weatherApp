@@ -138,6 +138,7 @@ function convertToFahrenheit() {
   tempCelsius.classList.add("change");
   tempFahrinheit.classList.remove("change");
   snowWind.innerHTML = `${Math.round(windSpeedUnit * 0.62137)} ${weatherUnit}`;
+  secret();
 }
 
 //Current date
@@ -224,6 +225,12 @@ let dailyForecastSelector = document.querySelector("#daily-forecast");
 let searchForm = document.querySelector("#search-line");
 let forecastButton = document.getElementsByClassName("col");
 
+// Secret Feature
+
+let varOne = null;
+let varTwo = null;
+let varThree = null;
+
 //Weather forecast buttons
 
 document.addEventListener("click", function (e) {
@@ -242,6 +249,10 @@ document.addEventListener("click", function (e) {
     document.getElementById("3").classList.remove("bg");
     document.getElementById("4").classList.remove("bg");
     document.getElementById("5").classList.remove("bg");
+    varOne += 3;
+    varTwo += 3;
+    console.log(varOne);
+    console.log(varTwo);
   }
 });
 
@@ -260,6 +271,7 @@ document.addEventListener("click", function (e) {
     document.getElementById("2").classList.remove("bg");
     document.getElementById("4").classList.remove("bg");
     document.getElementById("5").classList.remove("bg");
+    varTwo = 3;
   }
 });
 
@@ -298,6 +310,7 @@ document.addEventListener("click", function (e) {
     document.getElementById("3").classList.remove("bg");
     document.getElementById("2").classList.remove("bg");
     document.getElementById("4").classList.remove("bg");
+    varOne = 5;
   }
 });
 
@@ -314,5 +327,12 @@ tempCelsius.addEventListener("click", convertToCelsius);
 tempFahrinheit.addEventListener("click", convertToFahrenheit);
 
 //Launch of the main function
+
+function secret() {
+  if (varOne === 11 && varTwo === 6) {
+    document.querySelector("body").classList.add("secret");
+    document.querySelector(".main").classList.add("secret");
+  }
+}
 
 initialData("Kyiv");
