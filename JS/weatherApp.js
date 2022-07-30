@@ -2,7 +2,7 @@
 
 function nextDaysForecats(response) {
   let forecastDayNames = response.data.daily;
-  let snowDailyForecast = `<div class="row">`;
+  let showDailyForecast = `<div class="row">`;
   let idToForecast = 1;
   let classToForecst = 1;
 
@@ -12,7 +12,7 @@ function nextDaysForecats(response) {
     let day = data.getDay();
     let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     if (index < 4) {
-      snowDailyForecast += ` <div  class="col">
+      showDailyForecast += ` <div  class="col">
                   <div class="card dashboard" style="width: 8rem">
                     <div id="${++idToForecast}" class="card-body ${++classToForecst} card-text"
                       >${days[day]} <br /> ${
@@ -27,7 +27,7 @@ function nextDaysForecats(response) {
                   </div>
                 </div> `;
 
-      dailyForecastSelector.innerHTML = snowDailyForecast;
+      dailyForecastSelector.innerHTML = showDailyForecast;
     }
   });
   tempInfo = forecastDayNames;
@@ -39,7 +39,7 @@ function nextDaysForecats(response) {
   windThreeF = tempInfo[2].wind_speed;
   windFour = tempInfo[3].wind_speed;
   windFourF = tempInfo[3].wind_speed;
-  snowDailyForecast += `</div>`;
+  showDailyForecast += `</div>`;
 }
 function getLocationCoords(response) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${response.data.coord.lat}&lon=${response.data.coord.lon}&appid=${apiKey}&units=metric`;
@@ -63,13 +63,14 @@ function initialData(cityInfo) {
     let city = response.data.name;
     weatherUnit = "km/h";
 
-    snowWeatherIcon.innerHTML = weatherIconForecast[weatherDescription];
-    snowWeather.innerHTML = weatherDescription;
-    snowPessure.innerHTML = pressure;
-    snowWind.innerHTML = `${windRound} ${weatherUnit}`;
-    snowHumidity.innerHTML = humidity;
-    snowTemp.innerHTML = `${tempRound}º`;
-    snowCity.innerHTML = city;
+    showWeatherIcon.innerHTML = weatherIconForecast[weatherDescription];
+    showWeather.innerHTML = weatherDescription;
+    showPessure.innerHTML = pressure;
+    showWind.innerHTML = `${windRound} ${weatherUnit}`;
+    showHumidity.innerHTML = humidity;
+    showTemp.innerHTML = `${tempRound}º`;
+    showCity.innerHTML = city;
+    convertToCelsius();
   }
   function cityValue(event) {
     event.preventDefault();
@@ -86,17 +87,17 @@ function initialData(cityInfo) {
 //Current Button
 
 function currentLocation() {
-  function snowLocationName(response) {
+  function showLocationName(response) {
     let city = response.data[0].name;
     initialData(city);
   }
-  function snowLocation(posission) {
+  function showLocation(posission) {
     let lat = posission.coords.latitude;
     let lon = posission.coords.longitude;
     let apiUrlReverse = `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=1&appid=${apiKey}`;
-    axios.get(apiUrlReverse).then(snowLocationName);
+    axios.get(apiUrlReverse).then(showLocationName);
   }
-  navigator.geolocation.getCurrentPosition(snowLocation);
+  navigator.geolocation.getCurrentPosition(showLocation);
 }
 
 function properMinutes() {
@@ -118,10 +119,10 @@ function convertToCelsius() {
   windTwoF = windTwo;
   windThreeF = windThree;
   windFourF = windFour;
-  snowTemp.innerHTML = `${Math.round(tempCurrent)}º`;
+  showTemp.innerHTML = `${Math.round(tempCurrent)}º`;
   tempCelsius.classList.remove("change");
   tempFahrinheit.classList.add("change");
-  snowWind.innerHTML = `${Math.round(windSpeedUnit)} ${weatherUnit}`;
+  showWind.innerHTML = `${Math.round(windSpeedUnit)} ${weatherUnit}`;
 }
 
 function convertToFahrenheit() {
@@ -134,10 +135,10 @@ function convertToFahrenheit() {
   windTwoF = windTwo * 0.62137;
   windThreeF = windThree * 0.62137;
   windFourF = windFour * 0.62137;
-  snowTemp.innerHTML = `${Math.round(tempCurrent * 1.8 + 32)}º`;
+  showTemp.innerHTML = `${Math.round(tempCurrent * 1.8 + 32)}º`;
   tempCelsius.classList.add("change");
   tempFahrinheit.classList.remove("change");
-  snowWind.innerHTML = `${Math.round(windSpeedUnit * 0.62137)} ${weatherUnit}`;
+  showWind.innerHTML = `${Math.round(windSpeedUnit * 0.62137)} ${weatherUnit}`;
   secret();
 }
 
@@ -214,13 +215,13 @@ let minTemp = document.getElementsByClassName("min-temp");
 let currentButton = document.querySelector("#current-button");
 let weatherDate = document.querySelector("#local-date");
 let weatherTime = document.querySelector("#local-time");
-let snowWind = document.querySelector("#wind");
-let snowWeatherIcon = document.querySelector("#weather-icon");
-let snowCity = document.querySelector("#city");
-let snowTemp = document.querySelector("#temperature");
-let snowWeather = document.querySelector("#weather-description");
-let snowPessure = document.querySelector("#pressure");
-let snowHumidity = document.querySelector("#humidity");
+let showWind = document.querySelector("#wind");
+let showWeatherIcon = document.querySelector("#weather-icon");
+let showCity = document.querySelector("#city");
+let showTemp = document.querySelector("#temperature");
+let showWeather = document.querySelector("#weather-description");
+let showPessure = document.querySelector("#pressure");
+let showHumidity = document.querySelector("#humidity");
 let dailyForecastSelector = document.querySelector("#daily-forecast");
 let searchForm = document.querySelector("#search-line");
 let forecastButton = document.getElementsByClassName("col");
@@ -236,14 +237,13 @@ let varThree = null;
 document.addEventListener("click", function (e) {
   if (e.target && e.target.id == "2") {
     tempCurrent = tempInfo[0].temp.max;
-    console.log(maxTemp[0].innerHTML);
-    snowHumidity.innerHTML = tempInfo[0].humidity;
-    snowPessure.innerHTML = tempInfo[0].pressure;
-    snowWind.innerHTML = `${Math.round(windOneF)} ${weatherUnit}`;
-    snowTemp.innerHTML = maxTemp[0].innerHTML;
-    snowWeatherIcon.innerHTML =
+    showHumidity.innerHTML = tempInfo[0].humidity;
+    showPessure.innerHTML = tempInfo[0].pressure;
+    showWind.innerHTML = `${Math.round(windOneF)} ${weatherUnit}`;
+    showTemp.innerHTML = maxTemp[0].innerHTML;
+    showWeatherIcon.innerHTML =
       weatherIconForecast[tempInfo[0].weather[0].main];
-    snowWeather.innerHTML = tempInfo[0].weather[0].main;
+    showWeather.innerHTML = tempInfo[0].weather[0].main;
 
     document.getElementById("2").classList.add("bg");
     document.getElementById("3").classList.remove("bg");
@@ -251,21 +251,19 @@ document.addEventListener("click", function (e) {
     document.getElementById("5").classList.remove("bg");
     varOne += 3;
     varTwo += 3;
-    console.log(varOne);
-    console.log(varTwo);
   }
 });
 
 document.addEventListener("click", function (e) {
   if (e.target && e.target.id == "3") {
     tempCurrent = tempInfo[1].temp.max;
-    snowHumidity.innerHTML = tempInfo[1].humidity;
-    snowPessure.innerHTML = tempInfo[1].pressure;
-    snowWind.innerHTML = `${Math.round(windTwoF)} ${weatherUnit}`;
-    snowTemp.innerHTML = maxTemp[1].innerHTML;
-    snowWeatherIcon.innerHTML =
+    showHumidity.innerHTML = tempInfo[1].humidity;
+    showPessure.innerHTML = tempInfo[1].pressure;
+    showWind.innerHTML = `${Math.round(windTwoF)} ${weatherUnit}`;
+    showTemp.innerHTML = maxTemp[1].innerHTML;
+    showWeatherIcon.innerHTML =
       weatherIconForecast[tempInfo[1].weather[0].main];
-    snowWeather.innerHTML = tempInfo[1].weather[0].main;
+    showWeather.innerHTML = tempInfo[1].weather[0].main;
     document.getElementById("2").classList.remove("2");
     document.getElementById("3").classList.add("bg");
     document.getElementById("2").classList.remove("bg");
@@ -278,13 +276,13 @@ document.addEventListener("click", function (e) {
 document.addEventListener("click", function (e) {
   if (e.target && e.target.id == "4") {
     tempCurrent = tempInfo[2].temp.max;
-    snowHumidity.innerHTML = tempInfo[2].humidity;
-    snowPessure.innerHTML = tempInfo[2].pressure;
-    snowWind.innerHTML = `${Math.round(windThreeF)} ${weatherUnit}`;
-    snowTemp.innerHTML = maxTemp[2].innerHTML;
-    snowWeatherIcon.innerHTML =
+    showHumidity.innerHTML = tempInfo[2].humidity;
+    showPessure.innerHTML = tempInfo[2].pressure;
+    showWind.innerHTML = `${Math.round(windThreeF)} ${weatherUnit}`;
+    showTemp.innerHTML = maxTemp[2].innerHTML;
+    showWeatherIcon.innerHTML =
       weatherIconForecast[tempInfo[2].weather[0].main];
-    snowWeather.innerHTML = tempInfo[2].weather[0].main;
+    showWeather.innerHTML = tempInfo[2].weather[0].main;
 
     document.getElementById("2").classList.remove("2");
     document.getElementById("4").classList.add("bg");
@@ -299,13 +297,13 @@ document.addEventListener("click", function (e) {
 document.addEventListener("click", function (e) {
   if (e.target && e.target.id == "5") {
     tempCurrent = tempInfo[3].temp.max;
-    snowHumidity.innerHTML = tempInfo[3].humidity;
-    snowPessure.innerHTML = tempInfo[3].pressure;
-    snowWind.innerHTML = `${Math.round(windFourF)} ${weatherUnit}`;
-    snowTemp.innerHTML = maxTemp[3].innerHTML;
-    snowWeatherIcon.innerHTML =
+    showHumidity.innerHTML = tempInfo[3].humidity;
+    showPessure.innerHTML = tempInfo[3].pressure;
+    showWind.innerHTML = `${Math.round(windFourF)} ${weatherUnit}`;
+    showTemp.innerHTML = maxTemp[3].innerHTML;
+    showWeatherIcon.innerHTML =
       weatherIconForecast[tempInfo[3].weather[0].main];
-    snowWeather.innerHTML = tempInfo[3].weather[0].main;
+    showWeather.innerHTML = tempInfo[3].weather[0].main;
 
     document.getElementById("2").classList.remove("2");
     document.getElementById("5").classList.add("bg");
